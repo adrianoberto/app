@@ -25,3 +25,12 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Buildpack heroku
+heroku create --buildpack https://github.com/nitinhayaran/heroku-buildpack-angular-spa.git
+
+variaveis:
+heroku config:set NGINX_WORKERS=4
+https://elements.heroku.com/buildpacks/nitinhayaran/heroku-buildpack-angular-spa
+
+heroku logs --tail --app berto-app
