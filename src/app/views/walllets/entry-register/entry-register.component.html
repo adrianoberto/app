@@ -1,0 +1,54 @@
+<div class="container">
+    
+    <form class="form">
+
+        <!-- Ativo -->
+        <div class="mb-3">
+            <label for="assetName" class="form-label">Ativo</label>
+            <select class="form-select" aria-label="Default select asset">
+                <option selected>Selecione o ativo</option>
+                <option [value]="ticker" *ngFor="let ticker of tickers">{{ ticker.tradingCode }}</option>
+            </select>
+        </div>
+
+        <!-- Quantidade -->
+        <div class="mb-3">
+            <label for="assetAmount" class="form-label">Quantidade</label>
+            <input type="number" class="form-control" id="assetAmount" placeholder="100" [formControl]="amountControl">
+        </div>
+
+        <!-- Preço Unitário -->
+        <div class="mb-3">
+            <label for="assetAmount" class="form-label">Preço Unitário (R$)</label>
+            <input type="number" class="form-control" id="assetUnitPrice" placeholder="10,90">
+        </div>
+
+        <!-- Corretora -->
+        <div class="mb-3">
+            <label for="stockbroker" class="form-label">Corretora</label>
+            <select class="form-select" aria-label="Default select asset" [formControl]="stockbrokerControl">
+                <option value="0" selected>Selecione a corretora</option>
+                <option [ngValue]="stockbroker" *ngFor="let stockbroker of stockbrokers">{{ stockbroker.shortName }}</option>
+            </select>
+        </div>
+
+        <!-- Tags -->
+        <!-- <div class="mb-3">
+            <label for="stockbroker" class="form-label">Corretora</label>
+            <select class="form-select" aria-label="Default select asset">
+                <option selected>Selecione as corretora</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+        </div> -->
+
+        <!-- Data -->
+        <div class="mb-3">
+            <label for="assetAmount" class="form-label">Data de Compra</label>
+            <input type="number" class="form-control" id="assetAmount" placeholder="10/10/2021 (dia/mes/ano)">
+        </div>
+
+    </form>
+
+</div>

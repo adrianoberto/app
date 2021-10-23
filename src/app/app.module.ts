@@ -4,31 +4,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { WalletsModule } from './views/walllets/wallets.module';
 
-import { 
-  HeaderComponent,
-  FooterComponent,
-  CustomCurrencyPipe
-} from '@app/shared';
-
+import { ComponentsModule } from '@app/shared/components/components.module';
+import { WalletsModule } from '@app/views/walllets/wallets.module';
 
 
 @NgModule({
   declarations: [
-    HeaderComponent,
-    FooterComponent,
-    AppComponent    
+    AppComponent,    
   ],
   imports: [
+    ComponentsModule,
     WalletsModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
+    FormsModule
   ],
   exports:[
-    
   ],
   providers: [],
   bootstrap: [AppComponent]

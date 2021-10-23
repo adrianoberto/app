@@ -1,16 +1,23 @@
+import { FiisModule } from './fiis/fiis.module';
 import { StocksModule } from './stocks/stocks.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { WalletsRoutes } from './wallets.routings';
-import { CustomCurrencyPipe } from '@app/shared';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EntryRegisterModule } from './entry-register/entry-register.module';
+
 
 @NgModule({
   declarations: [
   ],
-  imports: [    
-    CommonModule,
+  exports: [
     StocksModule,
+    FiisModule,
+    EntryRegisterModule
+  ],
+  imports: [
+    CommonModule,
     RouterModule.forChild(WalletsRoutes)
   ],
   providers: [],

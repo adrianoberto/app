@@ -1,0 +1,34 @@
+.sidebar {
+    margin-top: 80px !important;
+    z-index: 999;
+}
+
+@media (max-width: 1024px) {
+    .sidebar {
+        margin-top: 80px  !important;
+    }  
+}
+
+@media (max-width: 990px) {
+    .sidebar {
+        margin-top: 130px  !important;
+    }  
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        margin-top: 143px  !important;
+    }  
+}
+
+@media (max-width: 478px) {
+    .sidebar {
+        margin-top: 207px  !important;
+    }  
+}
+
+@media (max-width: 295px) {
+    .sidebar {
+        margin-top: 275px  !important;
+    }  
+}

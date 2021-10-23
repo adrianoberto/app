@@ -5,7 +5,7 @@ import { StocksComponent } from './views/walllets/stocks/stocks.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'wallets/fyudsifuyfs/stocks',
+    redirectTo: 'wallets/fyudsifuyfs/fiis',
     pathMatch: 'full'
   },
   {  

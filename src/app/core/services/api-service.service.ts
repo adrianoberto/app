@@ -11,20 +11,13 @@ export class ApiServiceService {
 
   constructor(public http: HttpClient) { }
 
-  getRequest<T>(url: string, params?: any) {
-    // return this.http.get<ServerResponse<T>>(url, {
-    //   params: this.getQueryParams(params)
-    // });
-    //.take(1)
+  getRequest<T>(url: string) {
+    return this.http.get<ServerResponse<T>>(url);
   }
 
-  getRequestById<T>(url: string, id: string, params?: any): Observable<ServerResponse<T>> {
+  getRequestById<T>(url: string, id: string): Observable<ServerResponse<T>> {
     url = url.replace(':id', id);
-    let p = {};
     return this.http.get<ServerResponse<T>>(url);
-    // return this.http.get<ServerResponse<T>>(url, { 
-    //   params: this.getQueryParams(params)
-    // });
   }
 
   postRequest(url: string, body: any) {

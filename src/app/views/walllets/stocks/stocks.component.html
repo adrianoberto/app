@@ -1,4 +1,6 @@
-<div class="container">
+
+<app-sidebar></app-sidebar>
+<div class="main container">
     <table class="table table-hover">
         <thead>
             <tr>
@@ -20,3 +22,7 @@
         </tbody>
     </table>
 </div>
+
+<app-custom-modal [title]="modalTitle" *ngIf="configLoadIsFinish">
+    <app-register type="STOCKS" [tickers]="tickers" [stockbrokers]="stockbrokers"></app-register>
+</app-custom-modal>
