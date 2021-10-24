@@ -1,7 +1,8 @@
 import { Component, Inject, Input, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { Ticker, Stockbroker } from '@app/core';
+import { Ticker, Stockbroker, Asset } from '@app/core';
 import { CustomModalComponent } from '../../../shared/components/custom-modal/custom-modal.component';
+import { WalletsService } from '../wallets.service';
 
 @Component({
   selector: 'app-register',
@@ -10,6 +11,7 @@ import { CustomModalComponent } from '../../../shared/components/custom-modal/cu
 })
 export class EntryRegisterComponent implements OnInit {
 
+  @Input() walletId = "";
   @Input() type = 'STOCKS';
   @Input() tickers: Ticker[] = [];
   @Input() stockbrokers: Stockbroker[] = [];
@@ -21,7 +23,10 @@ export class EntryRegisterComponent implements OnInit {
   tagControl = new FormControl(null);
   dateControl = new FormControl(null, Validators.required);
 
-  constructor(@Inject(CustomModalComponent) private modal: CustomModalComponent) { }
+  constructor(
+    @Inject(CustomModalComponent) private modal: CustomModalComponent,
+    private walletsService: WalletsService
+    ) { }
 
   ngOnInit(): void {
     this.loadControls();
@@ -29,8 +34,9 @@ export class EntryRegisterComponent implements OnInit {
   }
 
   loadControls() {
-    //this.amountControl.setValue(200);
-    this.stockbrokerControl.setValue(0);
+    //this.amountControl.setValue(200); 
+    this.tickerControl.setValue(null);
+    this.stockbrokerControl.setValue(null);
   }
 
   subscribeModal() {
@@ -41,35 +47,36 @@ export class EntryRegisterComponent implements OnInit {
     });
   }
 
-  save() {    
-
-    //console.log(this.stockbrokerControl.value);
-    
+  save() {   
 
     // if (!this.validate()) {
     //   console.log('invalido');
     //   return;
     // }
 
-    var asset = {
-      _id: undefined, //(this.isCreate) ? undefined : this.data.asset._id,
-      stockbroker: {
-        _id: this.stockbrokerControl.value._id,
-        shortName:  this.stockbrokerControl.value.shortName,
-      },
-    //   ticker: this.tickerControl.value,
-    //   tags: this.tags, //this.tagControl.value,
-    //   amount: this.amountControl.value,
-    //   unitPrice: this.unitPriceControl.value,
-    //   totalPrice: this.unitPriceControl.value * this.amountControl.value,
-    //   date: this.dateControl.value
+    const asset: Asset = {
+      walletId: this.walletId,
+      stockbroker: this.stockbrokerControl.value,
+      ticker: this.tickerControl.value,
+      tags: [],
+      amount: this.amountControl.value,
+      unitPrice: this.unitPriceControl.value,
+      totalPrice: this.unitPriceControl.value * this.amountControl.value,
+      date: `${this.dateControl.value}T03:00:00.000Z`,
+      tradingType: 'buy'
     };
  
+    this.walletsService
+        .addAssetToWallet(this.walletId, asset)
+        .subscribe(res => {
+          this.modal.close();
+        });
+
     // (this.isCreate)
     //   ? await this._create(this._dataService.wallletId, asset)
     //   : await this._edit(this._dataService.wallletId, asset);
 
-    console.log(asset);
+
 
     //this.modal.close();
   }

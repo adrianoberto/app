@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { WalletAsset, Ticker, Stockbroker, ServerResponse } from '@app/core';
-import { StocksService } from '../wallets.service';
+import { WalletsService } from '../wallets.service';
 
 
 @Component({
@@ -11,16 +11,17 @@ import { StocksService } from '../wallets.service';
 export class StocksComponent implements OnInit {
 
   modalTitle = "Novo lançamento";
+  walletId = "6071434be1db924aa0f2915d";
   assets: WalletAsset[] = [];
   tickers: Ticker[] = [];
   stockbrokers: Stockbroker[] = [];
   configLoadIsFinish: boolean = false;
 
 
-  constructor(private stockService: StocksService) { }
+  constructor(private stockService: WalletsService) { }
 
   ngOnInit(): void {
-    this.loadAssetsByWalletId("6071434be1db924aa0f2915d");
+    this.loadAssetsByWalletId(this.walletId);
     this.loadConfigs();
   }
 

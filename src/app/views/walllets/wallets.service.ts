@@ -4,6 +4,7 @@ import { environment } from '@env/environment';
 import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { Asset } from '../../core/models/Asset';
 
 import { 
   WalletAsset,
@@ -15,20 +16,21 @@ import {
 @Injectable({
   providedIn: 'root'
 })
-export class StocksService {
+export class WalletsService {
 
   static httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
   static readonly BASE_URL = environment.baseUrl;
-  static readonly STOCKS = `${StocksService.BASE_URL}/tickers/:id`;
-  static readonly STOCKBROKERS = `${StocksService.BASE_URL}/stockbrokers`;
-  static readonly STOCKS_BY_WALLETID = `${StocksService.BASE_URL}/wallets/:id/stocks`
+  static readonly STOCKS = `${WalletsService.BASE_URL}/tickers/:id`;
+  static readonly STOCKBROKERS = `${WalletsService.BASE_URL}/stockbrokers`;
+  static readonly STOCKS_BY_WALLETID = `${WalletsService.BASE_URL}/wallets/:id/stocks`
+  static readonly ADD_ASSET_TO_WALLETID = `${WalletsService.BASE_URL}/wallets/:id/assets`
 
   constructor(private http: ApiServiceService) { }
 
   getTickers() {    
-    return this.http.getRequestById<Ticker>(StocksService.STOCKS, "stock")
+    return this.http.getRequest<Ticker>(WalletsService.STOCKS, "stock")
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -36,7 +38,7 @@ export class StocksService {
   }
 
   getStockbrokers() {    
-    return this.http.getRequest<Stockbroker>(StocksService.STOCKBROKERS)
+    return this.http.getRequest<Stockbroker>(WalletsService.STOCKBROKERS)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -44,11 +46,17 @@ export class StocksService {
   }
 
   getStocksByWalletId(walletId: string) {    
-      return this.http.getRequestById<WalletAsset>(StocksService.STOCKS_BY_WALLETID, walletId)
-        .pipe(
-          retry(2),
-          catchError(this.handleError)
-        );
+    return this.http.getRequest<WalletAsset>(WalletsService.STOCKS_BY_WALLETID, walletId)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      );
+  }
+
+  addAssetToWallet(walletId: string, asset: Asset) {
+    return this.http.postRequest(WalletsService.ADD_ASSET_TO_WALLETID, asset, walletId)
+      .pipe(        
+        catchError(this.handleError));
   }
 
 

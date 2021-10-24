@@ -24,5 +24,5 @@
 </div>
 
 <app-custom-modal [title]="modalTitle" *ngIf="configLoadIsFinish">
-    <app-register type="STOCKS" [tickers]="tickers" [stockbrokers]="stockbrokers"></app-register>
+    <app-register [walletId]="walletId" type="STOCKS" [tickers]="tickers" [stockbrokers]="stockbrokers"></app-register>
 </app-custom-modal>

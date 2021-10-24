@@ -5,9 +5,9 @@
         <!-- Ativo -->
         <div class="mb-3">
             <label for="assetName" class="form-label">Ativo</label>
-            <select class="form-select" aria-label="Default select asset">
-                <option selected>Selecione o ativo</option>
-                <option [value]="ticker" *ngFor="let ticker of tickers">{{ ticker.tradingCode }}</option>
+            <select class="form-select" aria-label="Default select asset" [formControl]="tickerControl">
+                <option [value]="null" selected>Selecione o ativo</option>
+                <option [ngValue]="ticker" *ngFor="let ticker of tickers">{{ ticker.tradingCode }}</option>
             </select>
         </div>
 
@@ -20,14 +20,14 @@
         <!-- Preço Unitário -->
         <div class="mb-3">
             <label for="assetAmount" class="form-label">Preço Unitário (R$)</label>
-            <input type="number" class="form-control" id="assetUnitPrice" placeholder="10,90">
+            <input type="number" class="form-control" id="assetUnitPrice" placeholder="10,90" [formControl]="unitPriceControl">
         </div>
 
         <!-- Corretora -->
         <div class="mb-3">
             <label for="stockbroker" class="form-label">Corretora</label>
             <select class="form-select" aria-label="Default select asset" [formControl]="stockbrokerControl">
-                <option value="0" selected>Selecione a corretora</option>
+                <option value="null" selected>Selecione a corretora</option>
                 <option [ngValue]="stockbroker" *ngFor="let stockbroker of stockbrokers">{{ stockbroker.shortName }}</option>
             </select>
         </div>
@@ -46,7 +46,7 @@
         <!-- Data -->
         <div class="mb-3">
             <label for="assetAmount" class="form-label">Data de Compra</label>
-            <input type="number" class="form-control" id="assetAmount" placeholder="10/10/2021 (dia/mes/ano)">
+            <input type="date" class="form-control" id="assetAmount" placeholder="10/10/2021 (dia/mes/ano)" [formControl]="dateControl">
         </div>
 
     </form>

@@ -24,7 +24,7 @@ export class FiisService {
   constructor(private http: ApiServiceService) { }
 
   getStocks(walletId: string) {    
-      return this.http.getRequestById<WalletAsset>(FiisService.FIIS, walletId)
+      return this.http.getRequest<WalletAsset>(FiisService.FIIS, walletId)
         .pipe(
           retry(2),
           catchError(this.handleError)
