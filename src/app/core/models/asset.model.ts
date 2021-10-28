@@ -1,5 +1,5 @@
-import { Stockbroker } from './Stockbroker';
-import { Ticker } from './Ticker';
+import { Stockbroker } from './stockbroker.model';
+import { Ticker } from './ticker.model';
 
 export interface Asset {    
     _id?: string;

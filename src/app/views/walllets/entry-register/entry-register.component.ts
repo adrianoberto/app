@@ -1,7 +1,7 @@
 import { Component, Inject, Input, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Ticker, Stockbroker, Asset } from '@app/core';
-import { CustomModalComponent } from '../../../shared/components/custom-modal/custom-modal.component';
+import { CustomModalComponent } from '@app/shared';
 import { WalletsService } from '../wallets.service';
 
 @Component({
@@ -31,6 +31,9 @@ export class EntryRegisterComponent implements OnInit {
   ngOnInit(): void {
     this.loadControls();
     this.subscribeModal();
+
+    this.modal.buttom("alterar").subscribe(x=> console.log("clicou no alterar"));
+    this.modal.buttom("sair").subscribe(x=> console.log("clicou no sair"));
   }
 
   loadControls() {
@@ -47,7 +50,7 @@ export class EntryRegisterComponent implements OnInit {
     });
   }
 
-  save() {   
+  save() {
 
     // if (!this.validate()) {
     //   console.log('invalido');

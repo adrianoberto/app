@@ -9,6 +9,7 @@
                 <th scope="col">Preço Médio</th>
                 <th scope="col">Patrimonio</th>
                 <th scope="col">Percentual</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>            
@@ -18,11 +19,51 @@
                 <td>{{ asset.avgPrice | customCurrency: 'BRL' }}</td>
                 <td>{{ asset.totalPrice | customCurrency : 'BRL' }}</td>
                 <td>{{ asset.percent }} %</td>
+                <td>
+                    <button class="btn btn-sm btn-secondary" (click)="viewEvents(asset)"  data-bs-toggle="modal" data-bs-target="#eventsModal">                        
+                        <i class="bi bi-grid"></i>
+                        <!-- <i class="bi bi-three-dots"></i> -->
+                    </button>
+                    &nbsp;
+                    <button class="btn btn-sm btn-secondary" (click)="viewEvents(asset)"> 
+                        <i class="bi bi-plus-lg"></i>
+                    </button>
+                </td>
             </tr>
         </tbody>
     </table>
 </div>
 
-<app-custom-modal [title]="modalTitle" *ngIf="configLoadIsFinish">
+<app-custom-modal [buttoms]="[
+    { 'name': 'alterar', 'text': 'Alterar', 'class': 'btn-danger' }, 
+    { 'name': 'sair' }]" target="modalForm" [title]="modalTitle" *ngIf="configLoadIsFinish">
     <app-register [walletId]="walletId" type="STOCKS" [tickers]="tickers" [stockbrokers]="stockbrokers"></app-register>
 </app-custom-modal>
+
+<app-custom-modal [buttoms]="[{ 'name': 'alterar', 'text': 'Alterar Transações' }]" target="eventsModal" [title]="modalTitle">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Ordem</th>                
+                <th scope="col">Quantidade</th>
+                <th scope="col">Preço Unitário</th>
+                <th scope="col">Total</th>                
+            </tr>
+        </thead>
+        <tbody>            
+            <tr *ngFor="let event of assetSelected?.events">
+                <td>{{ getTradingType(event.tradingType) }}</td>
+                <td>{{ event.amount }}</td>
+                <td>{{ event.unitPrice | customCurrency: 'BRL' }}</td>
+                <td>{{ event.totalPrice | customCurrency : 'BRL' }}</td>
+                
+                <!-- <td>
+                    <i class="bi bi-edit"></i>
+                    &nbsp;
+                    <i class="bi bi-plus-lg"></i>
+                </td> -->
+            </tr>
+        </tbody>
+    </table>
+</app-custom-modal>
+

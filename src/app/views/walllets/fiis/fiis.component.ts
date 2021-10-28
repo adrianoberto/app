@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { WalletAsset } from '../../../core/models/WalletAsset';
 import { FiisService } from './fiis.service';
+import { WalletAsset, Ticker, Stockbroker, ServerResponse } from '@app/core';
 
 
 @Component({
@@ -10,7 +10,12 @@ import { FiisService } from './fiis.service';
 })
 export class FiisComponent implements OnInit {
 
-  assets: WalletAsset[] = []; 
+  assets: WalletAsset[] = [];
+  modalTitle = "Novo lançamento";
+  walletId = "6071434be1db924aa0f2915d";
+  tickers: Ticker[] = [];
+  stockbrokers: Stockbroker[] = [];
+  configLoadIsFinish: boolean = false;
 
   constructor(private stockService: FiisService) { }
 

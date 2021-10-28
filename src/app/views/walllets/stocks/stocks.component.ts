@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
-import { WalletAsset, Ticker, Stockbroker, ServerResponse } from '@app/core';
+import { Component,  OnInit } from '@angular/core';
+import { TradingType, TradingTypeValue, WalletAsset, Ticker, Stockbroker, ServerResponse } from '@app/core';
 import { WalletsService } from '../wallets.service';
 
 
@@ -15,7 +15,9 @@ export class StocksComponent implements OnInit {
   assets: WalletAsset[] = [];
   tickers: Ticker[] = [];
   stockbrokers: Stockbroker[] = [];
+  assetSelected!: WalletAsset;
   configLoadIsFinish: boolean = false;
+  showModalEvents: boolean = false;
 
 
   constructor(private stockService: WalletsService) { }
@@ -57,5 +59,18 @@ export class StocksComponent implements OnInit {
       .subscribe(response => {
         this.assets = response.data;
       });
+  }
+
+  viewEvents(asset: WalletAsset) {
+
+    this.modalTitle = "Transações";
+    this.assetSelected = asset;    
+    this.showModalEvents = true;    
+    
+    console.log(asset.events);
+  }
+
+  getTradingType(value: string) {
+    return TradingTypeValue(value);
   }
 }

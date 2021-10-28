@@ -4,7 +4,7 @@ import { environment } from '@env/environment';
 import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { Asset } from '../../core/models/Asset';
+import { Asset } from '../../core/models/asset.model';
 
 import { 
   WalletAsset,

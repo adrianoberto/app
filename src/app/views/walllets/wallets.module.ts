@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { WalletsRoutes } from './wallets.routings';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EntryRegisterModule } from './entry-register/entry-register.module';
 
 

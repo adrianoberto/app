@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" #modal [id]="target" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -11,7 +11,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cancel()">Cancelar</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="teste"  (click)="confirm()">Salvar</button>
+                <button type="button" class="btn btn-primary" (click)="confirm()">Salvar</button>
+
+                <button *ngFor="let buttom of buttoms" type="button" [ngClass]=[buttom.class] (click)="handle(buttom)" >{{ buttom.text || buttom.name }}</button>
             </div>
         </div>
     </div>

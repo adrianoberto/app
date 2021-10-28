@@ -1,8 +1,10 @@
-export interface Event {
+import { TradingType } from '@app/core/enums';
+
+interface Event {
     unitPrice: number;
     amount: number;
     totalPrice: number;
-    tradingType: string;
+    tradingType: TradingType;
 }
 
 export interface WalletAsset {
