@@ -10,8 +10,8 @@
                 <ng-content></ng-content>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cancel()">Cancelar</button>
-                <button type="button" class="btn btn-primary" (click)="confirm()">Salvar</button>
+                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cancel()">Cancelar</button>
+                <button type="button" class="btn btn-primary" (click)="confirm()">Salvar</button> -->
 
                 <button *ngFor="let buttom of buttoms" type="button" [ngClass]=[buttom.class] (click)="handle(buttom)" >{{ buttom.text || buttom.name }}</button>
             </div>

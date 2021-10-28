@@ -31,9 +31,6 @@ export class EntryRegisterComponent implements OnInit {
   ngOnInit(): void {
     this.loadControls();
     this.subscribeModal();
-
-    this.modal.buttom("alterar").subscribe(x=> console.log("clicou no alterar"));
-    this.modal.buttom("sair").subscribe(x=> console.log("clicou no sair"));
   }
 
   loadControls() {
@@ -43,11 +40,8 @@ export class EntryRegisterComponent implements OnInit {
   }
 
   subscribeModal() {
-    this.modal.action.subscribe(result => {
-      if(result) {
-        this.save();
-      }
-    });
+    this.modal.buttom("Cancelar").subscribe(() => this.modal.close());
+    this.modal.buttom("Confirmar").subscribe(() => this.save());
   }
 
   save() {
@@ -81,7 +75,7 @@ export class EntryRegisterComponent implements OnInit {
 
 
 
-    //this.modal.close();
+    this.modal.close();
   }
 
   validate() {

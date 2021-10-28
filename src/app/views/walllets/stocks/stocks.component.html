@@ -35,8 +35,8 @@
 </div>
 
 <app-custom-modal [buttoms]="[
-    { 'name': 'alterar', 'text': 'Alterar', 'class': 'btn-danger' }, 
-    { 'name': 'sair' }]" target="modalForm" [title]="modalTitle" *ngIf="configLoadIsFinish">
+    { 'name': 'Cancelar', 'class': 'btn-secondary' }, 
+    { 'name': 'Confirmar', 'class': 'btn-primary' }]" target="modalForm" [title]="modalTitle" *ngIf="configLoadIsFinish">
     <app-register [walletId]="walletId" type="STOCKS" [tickers]="tickers" [stockbrokers]="stockbrokers"></app-register>
 </app-custom-modal>
 
