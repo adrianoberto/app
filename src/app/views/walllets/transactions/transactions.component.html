@@ -14,7 +14,7 @@
         <tbody>
             <tr *ngFor="let event of transactions">
                 <td>{{ getTradingType(event.tradingType) }}</td>
-                <td>BBSE3</td>
+                <td>{{ event.ticker.tradingCode }}</td>
                 <td>{{ event.amount }}</td>
                 <td>{{ event.unitPrice | customCurrency: 'BRL' }}</td>
                 <td>{{ event.totalPrice | customCurrency : 'BRL' }}</td>
