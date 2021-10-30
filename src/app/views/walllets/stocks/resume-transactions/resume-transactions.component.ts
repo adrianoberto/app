@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { WalletAsset, TradingTypeValue } from '@app/core';
 
 @Component({
   selector: 'app-resume-transactions',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResumeTransactionsComponent implements OnInit {
 
+  @Input() asset!: WalletAsset;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  getTradingType(value: string) {
+    return TradingTypeValue(value);
+  }
 }

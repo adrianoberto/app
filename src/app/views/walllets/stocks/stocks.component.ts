@@ -66,8 +66,4 @@ export class StocksComponent implements OnInit {
     this.assetSelected = asset;    
     this.showModalEvents = true;
   }
-
-  getTradingType(value: string) {
-    return TradingTypeValue(value);
-  }
 }
