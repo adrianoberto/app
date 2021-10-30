@@ -1,0 +1,25 @@
+<app-sidebar></app-sidebar>
+<div class="main container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Ordem</th>
+                <th scope="col">Ativo</th>
+                <th scope="col">Quantidade</th>
+                <th scope="col">Preço Unitário</th>
+                <th scope="col">Total</th>
+                <th scope="col">Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let event of transactions">
+                <td>{{ getTradingType(event.tradingType) }}</td>
+                <td>BBSE3</td>
+                <td>{{ event.amount }}</td>
+                <td>{{ event.unitPrice | customCurrency: 'BRL' }}</td>
+                <td>{{ event.totalPrice | customCurrency : 'BRL' }}</td>
+                <td>{{ event.date | date: 'dd/MM/yyyy' }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

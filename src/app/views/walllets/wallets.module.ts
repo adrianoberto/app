@@ -5,14 +5,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { WalletsRoutes } from './wallets.routings';
 import { EntryRegisterModule } from './entry-register/entry-register.module';
+import { TransactionsModule } from './transactions/transactions.module';
 
 
 @NgModule({
   declarations: [
+  
   ],
   exports: [
     StocksModule,
     FiisModule,
+    TransactionsModule,
     EntryRegisterModule
   ],
   imports: [

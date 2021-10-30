@@ -25,6 +25,7 @@ export class WalletsService {
   static readonly STOCKS = `${WalletsService.BASE_URL}/tickers/:id`;
   static readonly STOCKBROKERS = `${WalletsService.BASE_URL}/stockbrokers`;
   static readonly STOCKS_BY_WALLETID = `${WalletsService.BASE_URL}/wallets/:id/stocks`
+  static readonly TRANSACTIONS_BY_WALLETID = `${WalletsService.BASE_URL}/wallets/:id/transactions`
   static readonly ADD_ASSET_TO_WALLETID = `${WalletsService.BASE_URL}/wallets/:id/assets`
 
   constructor(private http: ApiServiceService) { }
@@ -52,6 +53,15 @@ export class WalletsService {
         catchError(this.handleError)
       );
   }
+
+  getTransactionsByWalletId(walletId: string) {
+    return this.http.getRequest<any>(WalletsService.TRANSACTIONS_BY_WALLETID, walletId)
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    );
+  }
+
 
   addAssetToWallet(walletId: string, asset: Asset) {
     return this.http.postRequest(WalletsService.ADD_ASSET_TO_WALLETID, asset, walletId)

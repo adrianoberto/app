@@ -43,6 +43,6 @@
 <app-custom-modal [buttoms]="[{ 
                         'name': 'alterar', 'text': 'Alterar Transações', 'class': 'btn-secondary' 
                     }]" target="eventsModal" [title]="modalTitle">
-    <app-resume-transactions [asset]="assetSelected"></app-resume-transactions>
+    <app-resume-transactions [walletId]="walletId" [asset]="assetSelected"></app-resume-transactions>
 </app-custom-modal>
 
