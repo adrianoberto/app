@@ -62,12 +62,9 @@ export class StocksComponent implements OnInit {
   }
 
   viewEvents(asset: WalletAsset) {
-
     this.modalTitle = "Transações";
     this.assetSelected = asset;    
-    this.showModalEvents = true;    
-    
-    console.log(asset.events);
+    this.showModalEvents = true;
   }
 
   getTradingType(value: string) {

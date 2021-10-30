@@ -1,0 +1,27 @@
+<!-- <app-custom-modal [buttoms]="[
+    { 'name': 'Cancelar', 'class': 'btn-secondary' }, 
+    { 'name': 'Confirmar', 'class': 'btn-primary' }]" target="modalForm" [title]="modalTitle" *ngIf="configLoadIsFinish">
+    <app-register [walletId]="walletId" type="STOCKS" [tickers]="tickers" [stockbrokers]="stockbrokers"></app-register>
+</app-custom-modal>
+
+<app-custom-modal [buttoms]="[{ 
+                    'name': 'alterar', 'text': 'Alterar Transações', 'class': 'btn-secondary' }]" target="eventsModal" [title]="modalTitle">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Ordem</th>                
+                <th scope="col">Quantidade</th>
+                <th scope="col">Preço Unitário</th>
+                <th scope="col">Total</th>                
+            </tr>
+        </thead>
+        <tbody>            
+            <tr *ngFor="let event of assetSelected?.events">
+                <td>{{ getTradingType(event.tradingType) }}</td>
+                <td>{{ event.amount }}</td>
+                <td>{{ event.unitPrice | customCurrency: 'BRL' }}</td>
+                <td>{{ event.totalPrice | customCurrency : 'BRL' }}</td>
+            </tr>
+        </tbody>
+    </table>
+</app-custom-modal> -->

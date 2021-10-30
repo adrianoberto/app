@@ -4,10 +4,12 @@ import { StocksComponent } from './stocks.component';
 import { CustomPipesModule } from '@app/shared/pipes/pipes.module';
 import { ComponentsModule } from '@app/shared/components/components.module';
 import { EntryRegisterModule } from '../entry-register/entry-register.module';
+import { ResumeTransactionsComponent } from './resume-transactions/resume-transactions.component';
 
 @NgModule({
   declarations: [
-    StocksComponent
+    StocksComponent,
+    ResumeTransactionsComponent
   ],
   imports: [
     EntryRegisterModule,
