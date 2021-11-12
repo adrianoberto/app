@@ -1,0 +1,63 @@
+<div class="container">
+    
+    <form class="form">
+
+        
+
+        <!-- Tipo Transação -->
+        <div class="mb-3 text-end">
+            <button class="btn" [class.btn-secondary]="tradingType === 'buy'" (click)="selectTradingType('buy')" >Comprar</button>
+            &nbsp;
+            <button class="btn" [class.btn-secondary]="tradingType === 'sell'"  (click)="selectTradingType('sell')">Venda</button>
+        </div>
+
+        <!-- Ativo -->
+        <div class="mb-3">
+            <label for="assetName" class="form-label">Ativo</label>
+            <select class="form-select" aria-label="Default select asset" [formControl]="tickerControl">
+                <option [value]="null" selected>Selecione o ativo</option>
+                <option [ngValue]="ticker" *ngFor="let ticker of tickers">{{ ticker.tradingCode }}</option>
+            </select>
+        </div>
+
+        <!-- Quantidade -->
+        <div class="mb-3">
+            <label for="assetAmount" class="form-label">Quantidade</label>
+            <input type="number" class="form-control" id="assetAmount" placeholder="100" [formControl]="amountControl">
+        </div>
+
+        <!-- Preço Unitário -->
+        <div class="mb-3">
+            <label for="assetAmount" class="form-label">Preço Unitário (R$)</label>
+            <input type="number" class="form-control" id="assetUnitPrice" placeholder="10,90" [formControl]="unitPriceControl">
+        </div>
+
+        <!-- Corretora -->
+        <div class="mb-3">
+            <label for="stockbroker" class="form-label">Corretora</label>
+            <select class="form-select" aria-label="Default select asset" [formControl]="stockbrokerControl">
+                <option value="null" selected>Selecione a corretora</option>
+                <option [ngValue]="stockbroker" *ngFor="let stockbroker of stockbrokers">{{ stockbroker.shortName }}</option>
+            </select>
+        </div>
+
+        <!-- Tags -->
+        <!-- <div class="mb-3">
+            <label for="stockbroker" class="form-label">Corretora</label>
+            <select class="form-select" aria-label="Default select asset">
+                <option selected>Selecione as corretora</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+        </div> -->
+
+        <!-- Data -->
+        <div class="mb-3">
+            <label for="assetAmount" class="form-label">Data da {{ tradingType === 'buy' ? "Compra" : "Venda" }}</label>
+            <input type="date" class="form-control" id="assetAmount" placeholder="10/10/2021 (dia/mes/ano)" [formControl]="dateControl">
+        </div>
+
+    </form>
+
+</div>

@@ -1,0 +1,24 @@
+<!-- Modal -->
+<div class="modal fade" #modal [id]="target" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">{{ title }}</h5>
+                <button type="button" 
+                        #btnclose 
+                        class="btn-close" 
+                        data-bs-dismiss="modal" 
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ng-content></ng-content>
+            </div>
+            <div class="modal-footer">
+                <button *ngFor="let buttom of buttoms" 
+                        type="button" 
+                        [ngClass]=[buttom.class] 
+                        (click)="handle(buttom)" >{{ buttom.text || buttom.name }}</button>
+            </div>
+        </div>
+    </div>
+</div>

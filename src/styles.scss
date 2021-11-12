@@ -1,0 +1,35 @@
+.main {
+    margin-top: 170px;
+    margin-bottom: 70px;
+}
+
+@media (max-width: 1024px) {
+    .main {
+        margin-top: 170px;
+    }
+}
+
+@media (max-width: 990px) {
+    .main {
+        margin-top: 270px;
+    }  
+}
+
+@media (max-width: 768px) {
+    .main {
+        margin-top: 275px;
+    }   
+}
+
+
+@media (max-width: 478px) {
+    .main {
+        margin-top: 335px;
+    }   
+}
+
+@media (max-width: 295px) {
+    .main {
+        margin-top: 400px;
+    }  
+}

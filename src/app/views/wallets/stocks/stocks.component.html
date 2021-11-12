@@ -1,0 +1,47 @@
+<app-sidebar></app-sidebar>
+<div class="main container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Ativo</th>
+                <th scope="col">Quantidade</th>
+                <th scope="col">Preço Médio</th>
+                <th scope="col">Patrimonio</th>
+                <th scope="col">Percentual</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>            
+            <tr *ngFor="let asset of assets">
+                <td>{{ asset._id }}</td>
+                <td>{{ asset.amount }}</td>
+                <td>{{ asset.avgPrice | customCurrency: 'BRL' }}</td>
+                <td>{{ asset.totalPrice | customCurrency : 'BRL' }}</td>
+                <td>{{ asset.percent }} %</td>
+                <td>
+                    <button class="btn btn-sm btn-secondary" (click)="viewEvents(asset)"  data-bs-toggle="modal" data-bs-target="#eventsModal">                        
+                        <i class="bi bi-grid"></i>
+                        <!-- <i class="bi bi-three-dots"></i> -->
+                    </button>
+                    &nbsp;
+                    <button class="btn btn-sm btn-secondary" (click)="viewEvents(asset)"  data-bs-toggle="modal" data-bs-target="#modalForm"> 
+                        <i class="bi bi-plus-lg"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<app-custom-modal [buttoms]="[
+    { 'name': 'Cancelar', 'class': 'btn-secondary' }, 
+    { 'name': 'Confirmar', 'class': 'btn-primary' }]" target="modalForm" [title]="modalTitle" *ngIf="configLoadIsFinish">
+    <app-register [walletId]="walletId" type="STOCKS" [tickers]="tickers" [stockbrokers]="stockbrokers"></app-register>
+</app-custom-modal>
+
+<app-custom-modal [buttoms]="[{ 
+                        'name': 'alterar', 'text': 'Alterar Transações', 'class': 'btn-secondary' 
+                    }]" target="eventsModal" [title]="modalTitle">
+    <app-resume-transactions [walletId]="walletId" [asset]="assetSelected"></app-resume-transactions>
+</app-custom-modal>
+
