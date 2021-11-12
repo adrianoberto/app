@@ -24,7 +24,7 @@ export class ResumeTransactionsComponent implements OnInit {
   subscribeModal() {
     this.modal.buttom("alterar").subscribe(() => {
       this.modal.close();
-      this.router.navigate(["wallets", this.walletId, "transactions", this.asset._id]);
+      this.router.navigate(["wallets", "transactions", this.asset._id]);
     });
   }
   getTradingType(value: string) {

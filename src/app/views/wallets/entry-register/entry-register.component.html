@@ -2,6 +2,15 @@
     
     <form class="form">
 
+        
+
+        <!-- Tipo Transação -->
+        <div class="mb-3 text-end">
+            <button class="btn" [class.btn-secondary]="tradingType === 'buy'" (click)="selectTradingType('buy')" >Comprar</button>
+            &nbsp;
+            <button class="btn" [class.btn-secondary]="tradingType === 'sell'"  (click)="selectTradingType('sell')">Venda</button>
+        </div>
+
         <!-- Ativo -->
         <div class="mb-3">
             <label for="assetName" class="form-label">Ativo</label>
@@ -45,7 +54,7 @@
 
         <!-- Data -->
         <div class="mb-3">
-            <label for="assetAmount" class="form-label">Data de Compra</label>
+            <label for="assetAmount" class="form-label">Data da {{ tradingType === 'buy' ? "Compra" : "Venda" }}</label>
             <input type="date" class="form-control" id="assetAmount" placeholder="10/10/2021 (dia/mes/ano)" [formControl]="dateControl">
         </div>
 

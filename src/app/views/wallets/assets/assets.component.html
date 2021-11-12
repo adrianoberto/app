@@ -1,4 +1,3 @@
-
 <app-sidebar></app-sidebar>
 <div class="main container">
     <table class="table table-hover">
@@ -25,7 +24,7 @@
                         <!-- <i class="bi bi-three-dots"></i> -->
                     </button>
                     &nbsp;
-                    <button class="btn btn-sm btn-secondary" (click)="viewEvents(asset)"> 
+                    <button class="btn btn-sm btn-secondary" (click)="viewEvents(asset)"  data-bs-toggle="modal" data-bs-target="#modalForm"> 
                         <i class="bi bi-plus-lg"></i>
                     </button>
                 </td>
@@ -34,7 +33,7 @@
     </table>
 </div>
 
-<app-custom-modal [buttoms]="[
+<!-- <app-custom-modal [buttoms]="[
     { 'name': 'Cancelar', 'class': 'btn-secondary' }, 
     { 'name': 'Confirmar', 'class': 'btn-primary' }]" target="modalForm" [title]="modalTitle" *ngIf="configLoadIsFinish">
     <app-register [walletId]="walletId" type="STOCKS" [tickers]="tickers" [stockbrokers]="stockbrokers"></app-register>
@@ -44,5 +43,5 @@
                         'name': 'alterar', 'text': 'Alterar Transações', 'class': 'btn-secondary' 
                     }]" target="eventsModal" [title]="modalTitle">
     <app-resume-transactions [walletId]="walletId" [asset]="assetSelected"></app-resume-transactions>
-</app-custom-modal>
+</app-custom-modal> -->
 

@@ -6,12 +6,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { ComponentsModule } from '@app/shared/components/components.module';
-import { WalletsModule } from '@app/views/walllets/wallets.module';
+import { WalletsModule } from '@app/views/wallets/wallets.module';
+import { WalletsComponent } from './views/wallets/wallets.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent,    
+    AppComponent,
+    WalletsComponent,    
   ],
   imports: [
     ComponentsModule,

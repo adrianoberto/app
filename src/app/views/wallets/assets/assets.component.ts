@@ -1,17 +1,16 @@
-import { Component,  OnInit } from '@angular/core';
-import { TradingType, TradingTypeValue, WalletAsset, Ticker, Stockbroker, ServerResponse } from '@app/core';
+import { Component, OnInit } from '@angular/core';
+import { ServerResponse, Stockbroker, Ticker, WalletAsset } from '@app/core/models';
 import { WalletsService } from '../wallets.service';
-
+import { DataService } from '@app/core';
 
 @Component({
-  selector: 'app-stocks',
-  templateUrl: './stocks.component.html',
-  styleUrls: ['./stocks.component.scss']
+  selector: 'app-assets',
+  templateUrl: './assets.component.html',
+  styleUrls: ['./assets.component.scss']
 })
-export class StocksComponent implements OnInit {
+export class AssetsComponent implements OnInit {
 
   modalTitle = "Novo lançamento";
-  walletId = "6071434be1db924aa0f2915d";
   assets: WalletAsset[] = [];
   tickers: Ticker[] = [];
   stockbrokers: Stockbroker[] = [];
@@ -20,10 +19,10 @@ export class StocksComponent implements OnInit {
   showModalEvents: boolean = false;
 
 
-  constructor(private stockService: WalletsService) { }
+  constructor(private dataService: DataService, private stockService: WalletsService) { }
 
   ngOnInit(): void {
-    this.loadAssetsByWalletId(this.walletId);
+    this.loadAssetsByWalletId(this.dataService.walletId);
     this.loadConfigs();
   }
 
@@ -46,12 +45,6 @@ export class StocksComponent implements OnInit {
       this.stockService
         .getStockbrokers()
         .toPromise();
-
-  // loadAllTickers() {
-  //   this.stockService
-  //     .getTickers()
-  //     .subscribe(tickers => this.tickers = tickers.data);
-  // }
 
   loadAssetsByWalletId(walletId: string) {
     this.stockService

@@ -2,7 +2,7 @@ import { Component, Inject, Input, OnInit, ViewChild, ViewChildren } from '@angu
 import { FormControl, Validators } from '@angular/forms';
 import { Ticker, Stockbroker, Asset } from '@app/core';
 import { CustomModalComponent } from '@app/shared';
-import { WalletsService } from '../wallets.service';
+import { WalletsService } from '@app/views/wallets/wallets.service';
 
 @Component({
   selector: 'app-register',
@@ -15,6 +15,8 @@ export class EntryRegisterComponent implements OnInit {
   @Input() type = 'STOCKS';
   @Input() tickers: Ticker[] = [];
   @Input() stockbrokers: Stockbroker[] = [];
+
+  tradingType: string = "buy";
 
   tickerControl = new FormControl(null, Validators.required);
   stockbrokerControl = new FormControl(null, Validators.required);
@@ -46,10 +48,10 @@ export class EntryRegisterComponent implements OnInit {
 
   save() {
 
-    // if (!this.validate()) {
-    //   console.log('invalido');
-    //   return;
-    // }
+    if (!this.validate()) {
+      console.log('invalido');
+      return;
+    }
 
     const asset: Asset = {
       walletId: this.walletId,
@@ -60,7 +62,7 @@ export class EntryRegisterComponent implements OnInit {
       unitPrice: this.unitPriceControl.value,
       totalPrice: this.unitPriceControl.value * this.amountControl.value,
       date: `${this.dateControl.value}T03:00:00.000Z`,
-      tradingType: 'buy'
+      tradingType: this.tradingType
     };
  
     this.walletsService
@@ -68,12 +70,6 @@ export class EntryRegisterComponent implements OnInit {
         .subscribe(res => {
           this.modal.close();
         });
-
-    // (this.isCreate)
-    //   ? await this._create(this._dataService.wallletId, asset)
-    //   : await this._edit(this._dataService.wallletId, asset);
-
-
 
     this.modal.close();
   }
@@ -85,4 +81,6 @@ export class EntryRegisterComponent implements OnInit {
       this.unitPriceControl.valid &&
       this.dateControl.valid);
   }
+
+  selectTradingType = (tradingType: string) =>  this.tradingType = tradingType;
 }

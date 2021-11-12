@@ -27,6 +27,7 @@ export class WalletsService {
   static readonly STOCKS_BY_WALLETID = `${WalletsService.BASE_URL}/wallets/:id/stocks`
   static readonly TRANSACTIONS_BY_WALLETID = `${WalletsService.BASE_URL}/wallets/:id/transactions`
   static readonly ADD_ASSET_TO_WALLETID = `${WalletsService.BASE_URL}/wallets/:id/assets`
+  static readonly ADD_ASSET_TO_WALLETID_AND_TRADINGCODE = `${WalletsService.BASE_URL}/wallets/:id/transactions/:tradingCode`
 
   constructor(private http: ApiServiceService) { }
 
@@ -56,6 +57,20 @@ export class WalletsService {
 
   getTransactionsByWalletId(walletId: string) {
     return this.http.getRequest<any>(WalletsService.TRANSACTIONS_BY_WALLETID, walletId)
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    );
+  }
+
+  getTransactionsByWalletIdAndTradingCode(walletId: string, tradingCode: string) {
+
+    let params = [
+      { name: 'id', value: walletId },
+      { name: 'tradingCode', value: tradingCode }
+    ];
+
+    return this.http.getRequestWithParams<any>(WalletsService.ADD_ASSET_TO_WALLETID_AND_TRADINGCODE, params)
     .pipe(
       retry(2),
       catchError(this.handleError)

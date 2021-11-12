@@ -16,13 +16,23 @@ export class ApiServiceService {
     return this.http.get<ServerResponse<T>>(url);
   }
 
+  getRequestWithParams<T>(url: string, params: any[]) {
+    url = this.getQueryParams(url, params);
+    return this.http.get<ServerResponse<T>>(url);
+  }
+
   postRequest(url: string, body: any, id?: string) {
     url = id ? url.replace(':id', id) : url;
     return this.http.post(url, body);
   }
 
-  private getQueryParams(params: any): any {
-    return "";
+  private getQueryParams(url: string, params: any[]): any {
+    if(!params) return url;
+
+    for(let param of params) {
+      url = param ? url.replace(`:${param.name}`, param.value) : url;
+    }
+    return url;
   }
 
   downloadFile(url: string, params?: any) {
